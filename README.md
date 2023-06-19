@@ -1,1 +1,2 @@
-"# SHOPPING-APP" 
+Project OOP berbasis GUI
+"SHOPPING-APP" 
