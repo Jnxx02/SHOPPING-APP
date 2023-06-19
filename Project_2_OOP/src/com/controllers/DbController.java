@@ -81,6 +81,20 @@ public class DbController extends DbConnect {
             e.printStackTrace();
         }
     }
+    
+    public static void updateStok(String nama, int jumlah) {
+        connection();
+        query = "UPDATE tb_product SET stock=? WHERE name=?";
+                try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(2, nama);
+            preparedStatement.setInt(1, jumlah);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void deleteData(String nama) {
         connection();

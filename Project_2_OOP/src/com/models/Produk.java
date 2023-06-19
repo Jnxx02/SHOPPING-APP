@@ -13,6 +13,8 @@ public class Produk {
     private long harga;
     private int stok;
 
+    public Produk() {};
+    
     public Produk(String nama, long harga, int stok) {
         this.nama = nama;
         this.harga = harga;

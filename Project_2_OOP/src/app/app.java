@@ -12,12 +12,16 @@ package app;
 import com.controllers.DbController;
 import com.models.Produk;
 
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
         
 public class app extends javax.swing.JFrame {
+
+
     public app() {
         initComponents();
+        updateTable();
     }
 
     /**
@@ -46,14 +50,14 @@ public class app extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btn_Refresh = new javax.swing.JButton();
+        btn_Beli = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Tunai = new javax.swing.JTextField();
         Kembali = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        Total = new javax.swing.JTextField();
         btn_Hitung = new javax.swing.JButton();
         btn_Simpan = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -190,10 +194,10 @@ public class app extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
-        btn_Refresh.setText("Refresh");
-        btn_Refresh.addActionListener(new java.awt.event.ActionListener() {
+        btn_Beli.setText("Beli");
+        btn_Beli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_RefreshActionPerformed(evt);
+                btn_BeliActionPerformed(evt);
             }
         });
 
@@ -202,13 +206,13 @@ public class app extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_Refresh)))
+                        .addGap(6, 6, 6)
+                        .addComponent(btn_Beli)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 96, Short.MAX_VALUE)
@@ -221,9 +225,9 @@ public class app extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Refresh)
+                .addComponent(btn_Beli)
                 .addContainerGap())
         );
 
@@ -256,12 +260,12 @@ public class app extends javax.swing.JFrame {
             }
         });
 
-        jTextField6.setEditable(false);
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField6.setText("Rp");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        Total.setEditable(false);
+        Total.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Total.setText("Rp");
+        Total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                TotalActionPerformed(evt);
             }
         });
 
@@ -293,20 +297,19 @@ public class app extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Kembali))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btn_Hitung)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Simpan))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Tunai, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(jTextField6)))))
+                            .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(btn_Hitung)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btn_Simpan))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addGap(22, 22, 22)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Tunai, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                                .addComponent(Total))))
                     .addComponent(jLabel10))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
@@ -317,7 +320,7 @@ public class app extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -423,6 +426,13 @@ public class app extends javax.swing.JFrame {
         in_nama.requestFocus();
     }
     
+    public void clearPayment() {
+        Total.setText("Rp");
+        Tunai.setText("");
+        Kembali.setText("Rp");
+        Tunai.requestFocus();
+    }
+    
     public void insertData(String nama, String harga, String jumlah) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int row = jTable1.getRowCount();
@@ -473,17 +483,59 @@ public class app extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_KembaliActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_TotalActionPerformed
 
     private void btn_HitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HitungActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int rowSelect = jTable1.getSelectedRow();
+        Total.setText(model.getValueAt(rowSelect, 2).toString());
+        
+        // Mendapatkan harga dari komponen in_harga
+        double harga = Double.parseDouble(Total.getText());
+
+        // Mendapatkan jumlah tunai dari komponen Tunai
+        double jumlahTunai = Double.parseDouble(Tunai.getText());
+
+        // Menghitung total
+        double total = jumlahTunai - harga;
+
+        // Menampilkan total pada komponen Kembali
+        Kembali.setText(String.format("%.0f", total)); 
+
+        // Menghitung dan menampilkan kembalian jika ada
+        if (total >= 0) {
+            double kembalian = jumlahTunai - harga;
+            Kembali.setText(String.format("Rp" + "%.0f", kembalian));
+        } else {
+            Kembali.setText("0");
+        }
     }//GEN-LAST:event_btn_HitungActionPerformed
 
-    private void btn_SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SimpanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_SimpanActionPerformed
+    private void btn_SimpanActionPerformed(java.awt.event.ActionEvent evt) {
+        Produk produk = new Produk();
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int rowSelect = jTable1.getSelectedRow();
+            String nama = model.getValueAt(rowSelect, 1).toString();
+            String stok = model.getValueAt(rowSelect, 3).toString();
+            int stock = Integer.parseInt(stok);
+            produk.setStok(stock - 1);
+            DbController.updateStok(nama, produk.getStok());
+            updateTable();
+            clearPayment();
+            JOptionPane.showMessageDialog(null, "Pembelian Berhasil!");
+            
+            if (produk.getStok() < 1) {
+                DbController.deleteData(model.getValueAt(rowSelect, 1).toString());
+                updateTable();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tidak ada Produk yang di Beli!");
+        }
+}
+                                          
 
     private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
         try {
@@ -527,9 +579,11 @@ public class app extends javax.swing.JFrame {
         clear();
     }//GEN-LAST:event_btn_ClearActionPerformed
 
-    private void btn_RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefreshActionPerformed
-        updateTable();
-    }//GEN-LAST:event_btn_RefreshActionPerformed
+    private void btn_BeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BeliActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int rowSelect = jTable1.getSelectedRow();
+        Total.setText("Rp" + model.getValueAt(rowSelect, 2).toString());
+    }//GEN-LAST:event_btn_BeliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,12 +637,13 @@ public class app extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Kembali;
+    private javax.swing.JTextField Total;
     private javax.swing.JTextField Tunai;
+    private javax.swing.JButton btn_Beli;
     private javax.swing.JButton btn_Clear;
     private javax.swing.JButton btn_Delete;
     private javax.swing.JButton btn_Edit;
     private javax.swing.JButton btn_Hitung;
-    private javax.swing.JButton btn_Refresh;
     private javax.swing.JButton btn_Simpan;
     private javax.swing.JButton btn_Tambah;
     private javax.swing.JTextField in_harga;
@@ -610,6 +665,5 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
